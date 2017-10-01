@@ -8,10 +8,12 @@
 ; Ref
 ; [1] https://medium.com/jungletronics/meeting-assembly-hello-world-arduino-blinking-code-330386652309
 ; [2] http://nerdathome.blogspot.com/2008/04/avr-as-usage-tutorial.html
+; [3] https://www.cypherpunk.at/2014/09/native-assembler-programming-on-arduino/
+; [4] https://www.cypherpunk.at/2015/11/assembler-on-arduino-part-2/
 
 ;#include <avr/io.h>
 
-.equ PORTB, 0x05
+.equ PORTB, 0x05  ; these numbers are the register addresses
 .equ DDRB,  0x04
 .equ PINB,  0x03
 
@@ -28,13 +30,13 @@
 START:         ; this is a label "START"
 
     ; set up the stack
-    ldi r16, lo8(RAMEND) ; lo8() get the lower byte of a 16-bit data
+    ldi r16, lo8(RAMEND) ; lo8() get the lower byte of a data
     out SPL, r16
 
-    ldi r16, hi8(RAMEND)  ; hi8() get the higher byte
+    ldi r16, hi8(RAMEND)  ; hi8() get the 2nd higher byte
     out SPH, r16
 
-    sbi DDRB,  5 ; set PB5 to output mode
+    sbi DDRB,  5 ; set PB5 as output mode
     sbi PORTB, 5 ; high, LED off
 
 
