@@ -150,7 +150,7 @@ del3:
     brne del2 ; 不为 0 跳转到 del2; 为 0 顺序执行 (2t/1t)
     pop r16   ; (2t)
     dec r16   ; (1t)
-    brne del1 ; 不为 0 跳转到 del2; 为 0 顺序执行 (2t/1t)
+    brne del1 ; 不为 0 跳转到 del1; 为 0 顺序执行 (2t/1t)
     pop r16   ; (2t)
     ret       ; 子程序返回 (4t)
 
